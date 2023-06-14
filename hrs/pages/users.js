@@ -1,7 +1,33 @@
+import { useState } from "react";
 import clientPromise from "../lib/mongodb";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function Users({ users }) {
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  // const [group_number, setGroupNumber] = useState("");
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+    
+    const postData = async () => {
+      const data = {
+        first_name: first_name,
+        last_name: last_name,
+        // group_number: group_number,
+      };
+
+      const response = await fetch("/api/post", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      return response.json();
+    };
+    postData().then((data) => {
+      alert(data.message);
+    });
+  }
+
   return (
     <div>
       <table class="table">
@@ -15,7 +41,7 @@ export default function Users({ users }) {
         </thead>
         <tbody>
           {users.map((user, index) => (
-            <tr>
+            <tr key={index} > 
               <>
                 <th scope="row">1</th>
                 <td>{user.first_name}</td>
@@ -27,14 +53,14 @@ export default function Users({ users }) {
         </tbody>
       </table>
 
-      <form class="row g-3" action="/send-data-here" method="post">
+      <form class="row g-3" onSubmit={handleSubmit}>
         <div class="col-md-4 form-floating mb-3">
           <input
             type="text"
             id="first"
             name="first"
             class="form-control"
-            placeholder="First Name"
+            onChange={(e) => setFirstName(e.target.value)}
           />
           <label for="first">First Name</label>
         </div>
@@ -44,7 +70,7 @@ export default function Users({ users }) {
             id="last"
             name="last"
             class="form-control"
-            placeholder="Last Name"
+            onChange={(e) => setLastName(e.target.value)}
           />
           <label for="last">Last Name</label>
         </div>
