@@ -76,6 +76,7 @@ export default function Users({ users }) {
             id="first"
             name="first"
             class="form-control"
+            placeholder="firstName"
             onChange={(e) => setFirstName(e.target.value)}
           />
           <label for="first">Nombre</label>
@@ -86,6 +87,7 @@ export default function Users({ users }) {
             id="last"
             name="last"
             class="form-control"
+            placeholder="lastName"
             onChange={(e) => setLastName(e.target.value)}
           />
           <label for="last">Apellido</label>
@@ -135,6 +137,7 @@ export default function Users({ users }) {
             type="text"
             class="form-control"
             id="inputCity"
+            placeholder="cityInput"
             onChange={(e) => setCity(e.target.value)}
           />
           <label for="inputCity" class="form-label">
@@ -159,6 +162,7 @@ export default function Users({ users }) {
             type="text"
             class="form-control"
             id="inputZip"
+            placeholder="zipCode"
             onChange={(e) => setZipCode(e.target.value)}
           />
           <label for="inputZip">Zip</label>
@@ -169,6 +173,7 @@ export default function Users({ users }) {
             id="phoneNumber"
             name="phoneNumber"
             class="form-control"
+            placeholder="phoneNumber"
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
           <label for="phoneNumber">Numero de Telefono</label>
@@ -179,6 +184,7 @@ export default function Users({ users }) {
             id="emailAddress"
             name="emailAddress"
             class="form-control"
+            placeholder="emailAddress"
             onChange={(e) => setEmailAddress(e.target.value)}
           />
           <label for="emailAddress">Correo Electronico</label>
