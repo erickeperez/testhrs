@@ -5,30 +5,16 @@ import "bootstrap/dist/css/bootstrap.css";
 export default function Users({ users }) {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
-  const [group_number, setGroupNumber] = useState("");
-  const [address_1, setAddress1] = useState("");
-  const [address_2, setAddress2] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zip_code, setZipCode] = useState("");
-  const [phone_number, setPhoneNumber] = useState("");
-  const [email_address, setEmailAddress] = useState("");
-
+  // const [group_number, setGroupNumber] = useState("");
+  
   function handleSubmit(e) {
     e.preventDefault();
-
+    
     const postData = async () => {
       const data = {
         first_name: first_name,
         last_name: last_name,
-        group_number: group_number,
-        address_1: address_1,
-        address_2: address_2,
-        city: city,
-        state: state,
-        zip_code: zip_code,
-        phone_number: phone_number,
-        email_address: email_address,
+        // group_number: group_number,
       };
 
       const response = await fetch("/api/post", {
@@ -55,7 +41,7 @@ export default function Users({ users }) {
         </thead>
         <tbody>
           {users.map((user, index) => (
-            <tr key={index}>
+            <tr key={index} > 
               <>
                 <th scope="row">1</th>
                 <td>{user.first_name}</td>
@@ -67,8 +53,6 @@ export default function Users({ users }) {
         </tbody>
       </table>
 
-                          {/*  Register User Form */}
-
       <form class="row g-3" onSubmit={handleSubmit}>
         <div class="col-md-4 form-floating mb-3">
           <input
@@ -76,10 +60,9 @@ export default function Users({ users }) {
             id="first"
             name="first"
             class="form-control"
-            placeholder="firstName"
             onChange={(e) => setFirstName(e.target.value)}
           />
-          <label for="first">Nombre</label>
+          <label for="first">First Name</label>
         </div>
         <div class="col-md-4 form-floating mb-3">
           <input
@@ -87,17 +70,15 @@ export default function Users({ users }) {
             id="last"
             name="last"
             class="form-control"
-            placeholder="lastName"
             onChange={(e) => setLastName(e.target.value)}
           />
-          <label for="last">Apellido</label>
+          <label for="last">Last Name</label>
         </div>
         <div class="col-md-4 form-floating mb-3">
           <select
             class="form-select"
             id="group-select"
             aria-label="Floating label select example"
-            onChange={(e) => setGroupNumber(e.target.value)}
           >
             <option selected>Selecione el numero de Grupo</option>
             <option value="1">1</option>
@@ -106,92 +87,53 @@ export default function Users({ users }) {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <label for="floatingSelect">Numero de Grupo</label>
+          {/* <label for="floatingSelect">Works with selects</label> */}
         </div>
         <div class="col-12 form-floating mb-3">
+          <label for="inputAddress" class="form-label">
+            Address
+          </label>
           <input
             type="text"
             class="form-control"
             id="inputAddress"
             placeholder="1234 Main St"
-            onChange={(e) => setAddress1(e.target.value)}
           />
-          <label for="inputAddress" class="form-label">
-            Direcion
-          </label>
         </div>
         <div class="col-12 form-floating mb-3">
+          <label for="inputAddress2" class="form-label">
+            Address 2
+          </label>
           <input
             type="text"
             class="form-control"
             id="inputAddress2"
             placeholder="Apartment, studio, or floor"
-            onChange={(e) => setAddress2(e.target.value)}
           />
-          <label for="inputAddress2" class="form-label">
-            Direcion 2
-          </label>
         </div>
         <div class="col-md-4 form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="inputCity"
-            placeholder="cityInput"
-            onChange={(e) => setCity(e.target.value)}
-          />
           <label for="inputCity" class="form-label">
             City
           </label>
+          <input type="text" class="form-control" id="inputCity" />
         </div>
         <div class="col-md-4 form-floating mb-3">
-          <select
-            id="inputState"
-            class="form-select"
-            onChange={(e) => setState(e.target.value)}
-          >
-            <option selected>Selecione su Estado</option>
-            <option value="NJ">NJ</option>
+          <select id="inputState" class="form-select">
+            <option selected>NJ</option>
           </select>
           <label for="inputState" class="form-label">
-            Estado
+            State
           </label>
         </div>
         <div class="col-md-4 form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="inputZip"
-            placeholder="zipCode"
-            onChange={(e) => setZipCode(e.target.value)}
-          />
-          <label for="inputZip">Zip</label>
-        </div>
-        <div class="col-md-6 form-floating mb-3">
-          <input
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            class="form-control"
-            placeholder="phoneNumber"
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-          <label for="phoneNumber">Numero de Telefono</label>
-        </div>
-        <div class="col-md-6 form-floating mb-3">
-          <input
-            type="text"
-            id="emailAddress"
-            name="emailAddress"
-            class="form-control"
-            placeholder="emailAddress"
-            onChange={(e) => setEmailAddress(e.target.value)}
-          />
-          <label for="emailAddress">Correo Electronico</label>
+          <input type="text" class="form-control" id="inputZip" />
+          <label for="inputZip">
+            Zip
+          </label>
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">
-            Submit
+            Sign in
           </button>
         </div>
       </form>
